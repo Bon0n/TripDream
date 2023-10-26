@@ -42,11 +42,12 @@
 <body>
 <div class="container-sm">
     <h1 style="margin: 1em 1em 1em 0">Dados do Usuário</h1>
-    <form class="row g-3 needs-validation" novalidate method="post" action="{% url 'updateuser' user.id %}">
+    <form class="row g-3 needs-validation" novalidate method="post" action="{% url 'updateuser' %}">
         {% csrf_token %}
         <div class="col-md-4">
             <label for="validationCustom01" class="form-label">Nome</label>
-            <input type="text" class="form-control" id="validationCustom01" required name="name" value="{{user.first_name}}">
+            <input type="text" class="form-control" id="validationCustom01" required name="name"
+                   value="{{user.first_name}}">
             <div class="valid-feedback">
                 Looks good!
             </div>
@@ -72,8 +73,8 @@
         <div class="col-md-3">
             <label for="validationCustom04" class="form-label">Estado</label>
             <select class="form-select" id="validationCustom04" required name="state_hometown">
-                <option selected disabled value="{{user.state_hometown}}">Selecione:</option>
-                <option>SP</option>
+                <option selected value="{{user.state_hometown}}">Selecione:</option>
+                <option value="1">SP</option>
             </select>
             <div class="invalid-feedback">
                 Please select a valid state.
@@ -81,7 +82,12 @@
         </div>
         <div class="col-md-6">
             <label for="validationCustom03" class="form-label">City</label>
-            <input type="text" class="form-control" id="validationCustom03" required name="hometown">
+            <select class="form-select" id="validationCustom03" required name="hometown">
+                <option selected value="{{user_details.hometown}}">Selecione:</option>
+                {% for city in cities %}
+                    <option value="{{city.id}}">{{city.city}}</option>
+                {% endfor %}
+            </select>
             <div class="invalid-feedback">
                 Please provide a valid city.
             </div>

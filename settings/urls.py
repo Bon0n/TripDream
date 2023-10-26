@@ -24,6 +24,7 @@ urlpatterns = [
     path('home/', views.home, name='home'),
     path('visitedcities/', views.visited_cities, name='visitedcities'),
     path('accounts/', include('allauth.urls')),
+    path('updateuser/', views.update_user, name='updateuser'),
     path('map/', views.user_map, name='map'),
     path('newvisitedcity/', views.new_visited_city, name='newvisitedcity'),
     path('deletevisitedcity/<int:id>', views.delete_visited_city, name='deletevisitedcity')

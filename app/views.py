@@ -3,6 +3,7 @@ from django.shortcuts import render, redirect
 from django.contrib.auth.models import User
 from app.models import City, State, VisitedCities, UserDetails
 from app.services.generate_map import generate_map
+from app.services.user_details import update_user_details
 
 
 def login(request):
@@ -11,19 +12,27 @@ def login(request):
 
 @login_required
 def home(request):
-    print(request.user)
-    return render(request, 'user/index.html')
+    user = User.objects.get(username=request.user)
+    cities = City.objects.all()
+    try:
+        user_details = UserDetails.objects.get(user_id_id=user.id)
+        data = {
+            'user_details': user_details,
+            'cities': cities
+        }
+        return render(request, 'user/index.html', data)
+    except:
+        data = {
+            'cities': cities
+        }
+        return render(request, 'user/index.html', data)
 
-
-# def update_user(request, id):
-#     userdata = User.objects.get(id=id)
-#     userdata.name = request.POST.get('name')
-#     userdata.username = request.POST.get('username')
-#     userdata.password = request.POST.get('password')
-#     userdata.hometown = request.POST.get('hometown')
-#     userdata.state_hometown = request.POST.get('state_hometown')
-#     userdata.regenerate_map = True
-#     return redirect(user)
+@login_required
+def update_user(request):
+    userdata = User.objects.get(username=request.user)
+    userdata.name = request.POST.get('name')
+    update_user_details(request)
+    return redirect(home)
 
 
 @login_required

@@ -6,7 +6,7 @@ class UserDetails(models.Model):
     user_id = models.ForeignKey(
         User, on_delete=models.CASCADE
     )
-    state_hometown = models.CharField(max_length=40)
+    state_hometown = models.PositiveSmallIntegerField()
     hometown = models.PositiveSmallIntegerField()
     regenerate_map = models.BooleanField(default=True, null=True, blank=True)
 
