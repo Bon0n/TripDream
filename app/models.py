@@ -31,7 +31,7 @@ class City(models.Model):
     cod_tom = models.PositiveSmallIntegerField()
 
 
-class VisitedCities(models.Model):
+class VisitedCity(models.Model):
     city_id = models.ForeignKey(
         City, on_delete=models.CASCADE
     )
@@ -40,7 +40,7 @@ class VisitedCities(models.Model):
     )
 
 
-class InterestedCities(models.Model):
+class InterestedCity(models.Model):
     city_id = models.ForeignKey(
         City, on_delete=models.CASCADE
     )
@@ -49,7 +49,7 @@ class InterestedCities(models.Model):
     )
 
 
-class PlanningCities(models.Model):
+class PlanningCity(models.Model):
     city_id = models.ForeignKey(
         City, on_delete=models.CASCADE
     )

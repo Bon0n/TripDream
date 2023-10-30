@@ -23,9 +23,16 @@ urlpatterns = [
     path('', views.login),
     path('home/', views.home, name='home'),
     path('visitedcities/', views.visited_cities, name='visitedcities'),
+    path('interestedcities/', views.interested_cities, name='interestedcities'),
+    path('planningcities/', views.planning_cities, name='planningcities'),
     path('accounts/', include('allauth.urls')),
     path('updateuser/', views.update_user, name='updateuser'),
     path('map/', views.user_map, name='map'),
     path('newvisitedcity/', views.new_visited_city, name='newvisitedcity'),
-    path('deletevisitedcity/<int:id>', views.delete_visited_city, name='deletevisitedcity')
+    path('newinterestedcity/', views.new_interested_city, name='newinterestedcity'),
+    path('newplanningcity/', views.new_planning_city, name='newplanningcity'),
+    path('deletevisitedcity/<int:id>', views.delete_visited_city, name='deletevisitedcity'),
+    path('deleteinterestedcity/<int:id>', views.delete_interested_city, name='deleteinterestedcity'),
+    path('deleteplanningcity/<int:id>', views.delete_planning_city, name='deleteplanningcity'),
+    path('<str:state_hometown>', views.get_cities, name='getcities'),
 ]

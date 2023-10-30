@@ -2,8 +2,8 @@
 {% block body %}
 <body>
 <div class="container-sm">
-    <h1 style="margin: 1em 1em 1em 0">Cidades Visitadas</h1>
-    <form class="row g-3 needs-validation" id="formAdd" novalidate method="post" action="{% url 'newvisitedcity' %}">
+    <h1 style="margin: 1em 1em 1em 0">Cidades em Planejamento</h1>
+    <form class="row g-3 needs-validation" id="formAdd" novalidate method="post" action="{% url 'newplanningcity' %}">
         {% csrf_token %}
         <div class="col-md-3">
             <label for="validationCustom04" class="form-label">Estado</label>
@@ -39,12 +39,12 @@
         </tr>
         </thead>
         <tbody>
-        {% for visited in visited_cities %}
+        {% for planning in planning_cities %}
         <tr>
-            <td>{{visited.city}}</td>
-            <td>{{visited.state.state}}</td>
+            <td>{{planning.city}}</td>
+            <td>{{planning.state.state}}</td>
             <td>
-                <a href="{% url 'deletevisitedcity' visited.id %}" class="btn btn-danger">Remover</a>
+                <a href="{% url 'deleteplanningcity' planning.id %}" class="btn btn-danger">Remover</a>
             </td>
         </tr>
         {% endfor %}

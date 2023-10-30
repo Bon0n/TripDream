@@ -5,8 +5,8 @@ from app.models import UserDetails
 
 def update_user_details(request):
     user = User.objects.get(username=request.user)
-    hometown = request.POST.get('hometown')
-    state_hometown = request.POST.get('state_hometown')
+    hometown = request.POST.get('city')
+    state_hometown = request.POST.get('state')
     try:
         user_details = UserDetails.objects.get(user_id_id=user)
         user_details.hometown = hometown
